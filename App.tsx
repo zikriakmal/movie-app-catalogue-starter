@@ -1,22 +1,18 @@
-import { ColorValue, ScrollView, Text, View } from "react-native";
-import PembungkusContoh from "./src/components/PembungkusContoh";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import DetailScreen from "./src/screens/DetailScreen";
+import BottomNav from "./src/components/BottomNav";
+
+const Stack = createNativeStackNavigator();
 
 const App = () => {
   return (
-    <ScrollView>
-      <PembungkusContoh />
-      <PembungkusContohDua text={"SATU"} color={"black"} />
-      <PembungkusContohDua text={"DUA"} color={"red"} />
-      <PembungkusContohDua text={"TIGA"} color={"blue"} />
-    </ScrollView>
-  )
-}
-
-const PembungkusContohDua = ({ text, color }: { text?: String, color: ColorValue }) => {
-  return (
-    <View>
-      <Text style={{ fontSize: 40, color: color }}>{text}</Text>
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen options={{ headerShown: false }} name="MainScreen" component={BottomNav} />
+        <Stack.Screen options={{ headerShown: false }} name="DetailScreen" component={DetailScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   )
 }
 
